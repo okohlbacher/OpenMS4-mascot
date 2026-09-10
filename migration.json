@@ -1,0 +1,26 @@
+{
+  "original_core_revision": "4fdec46b205459b92e7d3b9e56df5d8e912d5c85",
+  "original_topp_revision": "582535805581f2bdf4f3871d6802a0b45a3abe36",
+  "transfers": [
+    {
+      "original": "packages/topp/src/MascotAdapterOnline.cpp",
+      "destination": "src/MascotAdapterOnline.cpp",
+      "sha256": "bd476d7e93d6e62692e59d6495554dedd0e4e17918cd41a73f03a56202afcc34"
+    },
+    {
+      "original": "packages/core/src/openms/include/OpenMS/FORMAT/MascotRemoteQuery.h",
+      "destination": "include/OpenMS/FORMAT/MascotRemoteQuery.h",
+      "sha256": "985dff5b08f79a56877d7075973a9a3d3dda9b522bb678df161af7396db21562"
+    },
+    {
+      "original": "packages/core/src/openms/source/FORMAT/MascotRemoteQuery.cpp",
+      "destination": "source/FORMAT/MascotRemoteQuery.cpp",
+      "sha256": "4903e7ef36db88fa15d5b369b558775c2d15ea21e8edd32526ed9332bba1fcc6"
+    },
+    {
+      "original": "packages/core/src/tests/class_tests/openms/source/MascotRemoteQuery_test.cpp",
+      "destination": "tests/source/MascotRemoteQuery_test.cpp",
+      "sha256": "d17f2dc41a08337506877a6dbd7ae50729eda1f58617917435bba8baf89a548f"
+    }
+  ]
+}

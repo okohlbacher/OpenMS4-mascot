@@ -1,0 +1,10 @@
+{
+  "package": "OpenMSMascot",
+  "version": "1.0.0",
+  "tools": [
+    {
+      "name": "MascotAdapterOnline",
+      "category": "Identification of Proteins and Peptides (SearchEngines)"
+    }
+  ]
+}
