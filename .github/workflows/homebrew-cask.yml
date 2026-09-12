@@ -37,5 +37,6 @@ jobs:
           brew tap okohlbacher/openms4-core https://github.com/okohlbacher/OpenMS4-core
           brew tap okohlbacher/openms4-mascot https://github.com/okohlbacher/OpenMS4-mascot
           brew install --cask okohlbacher/openms4-mascot/openms4-mascot
-          MascotAdapterOnline --help
+          MascotAdapterOnline -write_ini "$RUNNER_TEMP/MascotAdapterOnline.ini"
+          test -s "$RUNNER_TEMP/MascotAdapterOnline.ini"
           brew uninstall --cask openms4-mascot
