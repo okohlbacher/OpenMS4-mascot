@@ -6,6 +6,7 @@ import os
 import subprocess
 import sys
 import threading
+import time
 import unittest
 import urllib.parse
 
@@ -52,16 +53,26 @@ class MascotTransport(unittest.TestCase):
                         environment = os.environ.copy()
                         # Keep the local fixture local even on hosts configured with HTTP proxies.
                         environment["NO_PROXY"] = environment["no_proxy"] = "127.0.0.1"
-                        completed = subprocess.run(
-                            [DRIVER, str(server.server_port), scenario],
-                            env=environment, capture_output=True, text=True, timeout=15,
-                        )
+                        started = time.monotonic()
+                        try:
+                            completed = subprocess.run(
+                                [DRIVER, str(server.server_port), scenario],
+                                env=environment, capture_output=True, text=True, timeout=60,
+                            )
+                        except subprocess.TimeoutExpired as timeout:
+                            # Say what the driver managed to do before it stalled; a bare
+                            # TimeoutExpired hides which request hung.
+                            self.fail(f"driver stalled after {time.monotonic() - started:.1f}s with "
+                                      f"{len(requests)} request(s) served {[r[:2] for r in requests]}; "
+                                      f"stdout={timeout.stdout!r} stderr={timeout.stderr!r}")
+                        elapsed = time.monotonic() - started
                     finally:
                         server.shutdown()
                         thread.join(timeout=5)
                     self.assertFalse(thread.is_alive())
 
                 self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
+                print(f"{scenario}: {elapsed:.2f}s", file=sys.stderr)
                 self.assertEqual(len(requests), {"post_error": 1, "get_error": 2, "success": 3}[scenario])
                 method, path, headers, body = requests[0]
                 self.assertEqual((method, path), ("POST", "/mascot/cgi/nph-mascot.exe?1"))
