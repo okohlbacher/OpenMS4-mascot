@@ -1,9 +1,9 @@
 cask "openms4-mascot" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.0.0-ci.1,8107a9d4f69d"
-  sha256 arm:   "3fed75b938424059d7dcfe46208bd26987888ec5b76c7af692012a65eec41660",
-         intel: "93a0638ab354301bd1afa3386a055a11d9fd222c78c5605c79f2377fbfd34e12"
+  version "1.0.0-ci.2,fcbcc61346c3"
+  sha256 arm:   "75004728d630032011c6fec9190211cd878b0422ffe36dc61218d91e520fffcd",
+         intel: "4ae5ca5387bd52e95f4279e8e41b6ec015b25de28a788bbd2902eaba7b10dc27"
 
   url "https://github.com/okohlbacher/OpenMS4-mascot/releases/download/" \
       "mascot-v#{version.csv.first}/OpenMS4-mascot-macos-#{arch}-Homebrew-#{version.csv.second}.tar.gz"
