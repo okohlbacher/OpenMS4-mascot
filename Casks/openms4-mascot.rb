@@ -1,9 +1,9 @@
 cask "openms4-mascot" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.0.0-ci.7,f2e3db39e7fd"
-  sha256 arm:   "4893d412461d1e4b6cc134f8d64e9bc10f0a9d6bb99471a9a4c1f6e59e4b4f97",
-         intel: "c2efa2384f9a9cd7c9d65c24cbf1216376da109155c7b18e0cc71bf78de9663e"
+  version "1.0.0-ci.8,b45722f915fa"
+  sha256 arm:   "c3f4838472a4082e757483d17a34644726aa492f9197d18871bb267a28e926f2",
+         intel: "38034bbefbaf092430cd2c323651b760a02c858b42b39a60ef4e3675c705050b"
 
   url "https://github.com/okohlbacher/OpenMS4-mascot/releases/download/" \
       "mascot-v#{version.csv.first}/OpenMS4-mascot-macos-#{arch}-Homebrew-#{version.csv.second}.tar.gz"
@@ -21,9 +21,9 @@ cask "openms4-mascot" do
   preflight do
     config = "#{HOMEBREW_PREFIX}/opt/openms4-core/lib/cmake/OpenMS/OpenMSConfig.cmake"
     core = File.exist?(config) ? File.read(config)[/set\(OpenMS_SOURCE_REVISION "([0-9a-f]{40})"\)/, 1] : nil
-    next if core == "83ce20da78337b0b329f5c634e52226585e4788d"
+    next if core == "0529ec8bfe0785d546dab56f58456525ef0fef02"
 
-    raise Cask::CaskError, "openms4-mascot #{version.csv.first} was built against openms4-core 83ce20da7833, " \
+    raise Cask::CaskError, "openms4-mascot #{version.csv.first} was built against openms4-core 0529ec8bfe07, " \
                            "but the installed openms4-core is #{core&.slice(0, 12) || "unknown"}. " \
                            "Install the openms4-mascot release built for the installed Core."
   end
